@@ -13,22 +13,15 @@ var blobContainers = [
   {
     name: 'images'
   }
+  {
+    name: 'thumbnails'
+  }
 ]
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: 'rg-${name}'
   location: location
   tags: tags
-}
-
-module comvsn '../../_infra/computerVision.bicep' = {
-  name: 'ComputerVision'
-  scope: rg
-  params: {
-    name: name
-    location: location
-    tags: tags
-  }
 }
 
 module st '../../_infra/storageAccount.bicep' = {
@@ -88,20 +81,39 @@ module fncapp '../../_infra/functionApp.bicep' = {
     dotnetVersion: '8.0'
     appEnvSettings: [
       {
-        name: 'ComputerVisionKey'
-        value: comvsn.outputs.apiKey
-      }
-      {
-        name: 'ComputerVisionEndPoint'
-        value: comvsn.outputs.endpoint
-      }
-      {
         name: 'StorageConnection'
         value: st.outputs.connectionString
       }
       {
-        name: 'StorageAccountName'
-        value: st.outputs.name
+        name: 'ThumbnailWidth'
+        value: 250
+      }
+      {
+        name: 'ThumbnailContainerName'
+        value: 'thumbnails'
+      }
+    ]
+  }
+}
+
+module evtgrd '../../_infra/eventGridSystemTopic.bicep' = {
+  name: 'EventGridSystemTopic'
+  scope: rg
+  params: {
+    name: name
+    location: location
+    tags: tags
+    topicType: 'Microsoft.Storage.StorageAccounts'
+    source: st.outputs.id
+    subscriptions: [
+      {
+        name: 'evtgrd-${name}-subscription-{0}-{1}'
+        endpointType: 'WebHook'
+        includedEventTypes: [
+          'Microsoft.Storage.BlobCreated'
+          'Microsoft.Storage.BlobDeleted'
+        ]
+        eventDeliverySchema: 'CloudEventSchemaV1_0'
       }
     ]
   }
