@@ -17,6 +17,7 @@ This provides sample apps for Azure Functions running in the isolated worker pro
 ## Getting Started
 
 - [**Image Analysis**](./image-analysis): Azure Blob Storage, Table Storage and Azure Cognitive Services - Computer Vision
+- [**Image Resize**](./image-resize): Azure Event Grid and Azure Blob Storage
 
 ## Resources
 
