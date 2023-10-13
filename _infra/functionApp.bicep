@@ -101,6 +101,11 @@ resource fncapp 'Microsoft.Web/sites@2022-09-01' = {
   }
 }
 
+resource fncapphost 'Microsoft.Web/sites/host@2022-09-01' existing = {
+  name: 'default'
+  parent: fncapp
+}
+
 var policies = [
   {
     name: 'scm'
@@ -122,3 +127,4 @@ resource fncappPolicies 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@
 
 output id string = fncapp.id
 output name string = fncapp.name
+output keys object = fncapphost.listKeys()

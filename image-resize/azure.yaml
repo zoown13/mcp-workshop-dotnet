@@ -9,3 +9,19 @@ infra:
 
 pipeline:
   provider: "github"
+
+services:
+  ImageResize:
+    language: dotnet
+    host: function
+    project: './src/ImageResize'
+    resourceName: 'fncapp-${AZURE_ENV_NAME}'
+
+hooks:
+  postdeploy:
+    shell: pwsh
+    continueOnError: false
+    interactive: true
+    run: |
+      Write-Host "Running PostDeploy script"
+      ./infra/Run-PostDeploy.ps1 -AzureEnvName $env:AZURE_ENV_NAME

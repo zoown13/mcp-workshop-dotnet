@@ -43,7 +43,9 @@ This sample [Azure Functions (isolated worker)](https://learn.microsoft.com/azur
    azd up
    ```
 
-### Deploy Application to Azure
+   > **NOTE**: The `azd up` command does both provision resources to Azure and deploy apps to Azure.
+
+### Deploy Application to Azure &ndash; GitHub Actions
 
 1. Run the commands below to deploy apps to Azure:
 

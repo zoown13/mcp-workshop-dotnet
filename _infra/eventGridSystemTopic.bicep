@@ -5,14 +5,6 @@ param tags object = {}
 
 param topicType string
 param source string
-param subscriptions array = [
-  {
-    name: 'evtgrd-${name}-subscription-{0}-{1}'
-    endpointType: 'WebHook'
-    includedEventTypes: []
-    eventDeliverySchema: 'CloudEventSchemaV1_0'
-  }
-]
 
 var eventgrid = {
   name: 'evtgrd-${name}-systemtopic'
@@ -20,7 +12,6 @@ var eventgrid = {
   tags: tags
   topicType: topicType
   source: source
-  subscriptions: subscriptions
 }
 
 resource evtgrdtopic 'Microsoft.EventGrid/systemTopics@2023-06-01-preview' = {
@@ -31,31 +22,3 @@ resource evtgrdtopic 'Microsoft.EventGrid/systemTopics@2023-06-01-preview' = {
     topicType: eventgrid.topicType
   }
 }
-
-resource evtgrdsubscriptionwebhook 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2023-06-01-preview' = [for sub in eventgrid.subscriptions: if (sub.endpointType == 'WebHook') {
-  name: format(sub.name, sub.endpointType, sub.eventDeliverySchema)
-  parent: evtgrdtopic
-  properties: {
-    destination: {
-      endpointType: sub.endpointType
-    }
-    filter: {
-      includedEventTypes: sub.includedEventTypes
-    }
-    eventDeliverySchema: sub.eventDeliverySchema
-  }
-}]
-
-resource evtgrdsubscriptionfunction 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2023-06-01-preview' = [for sub in eventgrid.subscriptions: if (sub.endpointType == 'AzureFunction') {
-  name: format(sub.name, sub.endpointType, sub.eventDeliverySchema)
-  parent: evtgrdtopic
-  properties: {
-    destination: {
-      endpointType: sub.endpointType
-    }
-    filter: {
-      includedEventTypes: sub.includedEventTypes
-    }
-    eventDeliverySchema: sub.eventDeliverySchema
-  }
-}]

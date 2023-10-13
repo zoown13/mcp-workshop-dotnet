@@ -105,16 +105,27 @@ module evtgrd '../../_infra/eventGridSystemTopic.bicep' = {
     tags: tags
     topicType: 'Microsoft.Storage.StorageAccounts'
     source: st.outputs.id
-    subscriptions: [
-      {
-        name: 'evtgrd-${name}-subscription-{0}-{1}'
-        endpointType: 'WebHook'
-        includedEventTypes: [
-          'Microsoft.Storage.BlobCreated'
-          'Microsoft.Storage.BlobDeleted'
-        ]
-        eventDeliverySchema: 'CloudEventSchemaV1_0'
-      }
-    ]
+    // subscriptions: [
+    //   {
+    //     name: 'evtgrd-${name}-subscription-{0}-{1}'
+    //     endpointType: 'WebHook'
+    //     endpointUrl: 'https://fncapp-${name}.azurewebsites.net/runtime/webhooks/EventGrid?functionName=ResizeImageEventGridTrigger&code=${fncapp.outputs.keys.systemKeys.eventgrid_extension}'
+    //     includedEventTypes: [
+    //       'Microsoft.Storage.BlobCreated'
+    //       'Microsoft.Storage.BlobDeleted'
+    //     ]
+    //     eventDeliverySchema: 'CloudEventSchemaV1_0'
+    //   }
+    //   {
+    //     name: 'evtgrd-${name}-subscription-{0}-{1}'
+    //     endpointType: 'AzureFunction'
+    //     resourceId: '${fncapp.outputs.id}/functions/ResizeImageEventGridTrigger'
+    //     includedEventTypes: [
+    //       'Microsoft.Storage.BlobCreated'
+    //       'Microsoft.Storage.BlobDeleted'
+    //     ]
+    //     eventDeliverySchema: 'CloudEventSchemaV1_0'
+    //   }
+    // ]
   }
 }

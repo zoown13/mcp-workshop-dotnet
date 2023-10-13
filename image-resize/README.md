@@ -40,12 +40,18 @@ This sample [Azure Functions (isolated worker)](https://learn.microsoft.com/azur
    ```bash
    azd auth login
    azd init -e $AZURE_ENV_NAME
-   azd up
+   azd provision
    ```
 
 ### Deploy Application to Azure
 
-1. Run the commands below to deploy apps to Azure:
+1. Run the command below to deploy apps to Azure:
+
+   ```bash
+   azd deploy
+   ```
+
+1. Alternatively, you can run the commands below to deploy apps to Azure through GitHub Actions:
 
    ```bash
    az login
