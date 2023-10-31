@@ -15,6 +15,9 @@ using SixLabors.ImageSharp.Formats.Png;
 
 namespace ImageResize;
 
+/// <summary>
+/// This represents the Event Grid Trigger function entity to resize the image.
+/// </summary>
 public class ResizeImageEventGridTrigger
 {
     private const string StorageConnection = "StorageConnection";
@@ -25,12 +28,22 @@ public class ResizeImageEventGridTrigger
     private readonly BlobContainerClient _client;
     private readonly ILogger<ResizeImageEventGridTrigger> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ResizeImageEventGridTrigger"/> class.
+    /// </summary>
+    /// <param name="client"><see cref="BlobContainerClient"/> instance.</param>
+    /// <param name="logger"><see cref="ILogger{TCategoryName}"/> instance.</param>
     public ResizeImageEventGridTrigger(BlobContainerClient client, ILogger<ResizeImageEventGridTrigger> logger)
     {
         this._client = client ?? throw new ArgumentNullException(nameof(client));
         this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
+    /// <summary>
+    /// Invokes the Event Grid Trigger function.
+    /// </summary>
+    /// <param name="cloudEvent"><see cref="CloudEvent"/> instance containing the event details.</param>
+    /// <param name="image"><see cref="Stream"/> instance containing the image data.</param>
     [Function(nameof(ResizeImageEventGridTrigger))]
     public async Task Run(
         [EventGridTrigger] CloudEvent cloudEvent,

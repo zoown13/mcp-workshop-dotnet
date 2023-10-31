@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace ImageUpload;
 
+/// <summary>
+/// This represents the Timer Trigger function entity to upload images periodically.
+/// </summary>
 public class UploadImageTimerTrigger
 {
     private readonly static Random random = new Random();
@@ -13,12 +16,21 @@ public class UploadImageTimerTrigger
     private readonly BlobContainerClient _client;
     private readonly ILogger _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UploadImageTimerTrigger"/> class.
+    /// </summary>
+    /// <param name="client"><see cref="BlobContainerClient"/> instance.</param>
+    /// <param name="loggerFactory"><see cref="ILoggerFactory"/> instance.</param>
     public UploadImageTimerTrigger(BlobContainerClient client, ILoggerFactory loggerFactory)
     {
         this._client = client ?? throw new ArgumentNullException(nameof(client));
         this._logger = (loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory))).CreateLogger<UploadImageTimerTrigger>();
     }
 
+    /// <summary>
+    /// Invokes the Timer Trigger function.
+    /// </summary>
+    /// <param name="timer"><see cref="TimerInfo"/> instance.</param>
     [Function(nameof(UploadImageTimerTrigger))]
     [FixedDelayRetry(5, "00:00:05")]
     public async Task Run([TimerTrigger("%RunSchedule%")] TimerInfo timer)
