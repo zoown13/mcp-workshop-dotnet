@@ -1,0 +1,45 @@
+name: On Docs Updated
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'README.md'
+    - 'start/README.md'
+    - 'complete/README.md'
+    - 'docs/**/*.md'
+    
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  request-localisation:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create an issue for localisation
+        id: issue
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "create-issue"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: 'Apply changes to all the localised documents'
+          body: |
+            There are some updates on the main documents written in English. Find the changes and apply them all to each localised document.
+
+      # - name: Assign the issue to Copilot
+      #   shell: bash
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     gh issue edit ${{ steps.issue.outputs.issue-number }} --add-assignee '@copilot'
