@@ -26,7 +26,7 @@
 1. 로그인하거나 가입하라는 메시지가 표시되면 그렇게 하세요. 무료입니다.
 1. GitHub Copilot 에이전트 모드를 사용하고 있는지 확인하세요.
 
-   ![GitHub Copilot Agent Mode](../../../docs/images/setup-01.png)
+   ![GitHub Copilot Agent Mode](../../../docs/images/setup-02.png)
 
 1. 모델을 `GPT-4.1` 또는 `Claude Sonnet 4`로 선택합니다.
 1. [MCP 서버](./00-setup.md#set-up-mcp-servers)를 구성했는지 확인하세요.
@@ -98,12 +98,16 @@
 1. 다음과 같은 프롬프트를 사용하여 할 일 목록 관리 로직을 구현합니다.
 
     ```text
-    ASP.NET Core를 사용하여 할 일 목록 애플리케이션을 개발하고 싶습니다. 지침을 따르세요.
-
+    ASP.NET Core Minimal API 애플리케이션에서 할 일 목록 관리 로직을 구현하고 싶습니다. 애플리케이션 개발을 위해 아래 지침을 따르세요.
+    
     - context7을 사용하세요.
     - 먼저 수행할 모든 단계를 식별하세요.
     - 작업 디렉토리는 `workshop/src/McpTodoServer.ContainerApp`입니다.
-    - 애플리케이션에는 ID, 제목, 설명, 완료 상태, 생성 날짜, 업데이트 날짜 속성을 가진 작업 관리 모델이 포함되어야 합니다.
+    - 데이터베이스로 SQLite를 사용하고 메모리 내 기능을 사용해야 합니다.
+    - 데이터베이스 트랜잭션을 위해 EntityFramework Core를 사용하세요.
+    - 애플리케이션 시작 시 데이터베이스를 초기화하세요.
+    - 할 일 항목에는 `ID`, `Text`, `IsCompleted` 컬럼만 포함됩니다.
+    - 할 일 목록 관리에는 5가지 기능이 있습니다 - 생성, 목록, 업데이트, 완료, 삭제.
     - 필요한 경우 .NET 9와 호환되는 NuGet 패키지를 추가하세요.
     - 할 일 목록 관리를 위한 API 엔드포인트를 구현하지 마세요.
     - 초기 데이터를 추가하지 마세요.
@@ -112,22 +116,7 @@
     ```
 
 1. GitHub Copilot의 ![the keep button image](https://img.shields.io/badge/keep-blue) 버튼을 클릭하여 변경 사항을 적용합니다.
-
-1. 다음과 같은 프롬프트를 사용하여 TodoTool 클래스를 추가합니다.
-
-    ```text
-    애플리케이션에 `TodoTool` 클래스를 추가하고 싶습니다. 지침을 따르세요.
-
-    - context7을 사용하세요.
-    - 먼저 수행할 모든 단계를 식별하세요.
-    - 작업 디렉토리는 `workshop/src/McpTodoServer.ContainerApp`입니다.
-    - `TodoTool` 클래스에는 5개의 메서드가 포함되어야 합니다 - 생성, 목록, 업데이트, 완료, 삭제.
-    - 종속성을 등록하지 마세요.
-    ```
-
-1. GitHub Copilot의 ![the keep button image](https://img.shields.io/badge/keep-blue) 버튼을 클릭하여 변경 사항을 적용합니다.
-
-1. 다음과 같은 프롬프트를 사용하여 애플리케이션을 빌드합니다.
+1. 다음과 같은 프롬프트를 사용하여 개발 결과를 확인합니다.
 
     ```text
     애플리케이션을 빌드하고 싶습니다. 지침을 따르세요.
@@ -141,6 +130,19 @@
    >
    > - 빌드가 성공할 때까지 이 단계를 반복하세요.
    > - 빌드가 계속 실패하면 오류 메시지를 확인하고 GitHub Copilot Agent에게 해결을 요청하세요.
+
+1. GitHub Copilot의 ![the keep button image](https://img.shields.io/badge/keep-blue) 버튼을 클릭하여 변경 사항을 적용합니다.
+1. 다음과 같은 프롬프트를 사용하여 개발 결과를 확인합니다.
+
+    ```text
+    애플리케이션에 `TodoTool` 클래스를 추가하고 싶습니다. 지침을 따르세요.
+
+    - context7을 사용하세요.
+    - 먼저 수행할 모든 단계를 식별하세요.
+    - 작업 디렉토리는 `workshop/src/McpTodoServer.ContainerApp`입니다.
+    - `TodoTool` 클래스에는 5개의 메서드가 포함되어야 합니다 - 생성, 목록, 업데이트, 완료, 삭제.
+    - 종속성을 등록하지 마세요.
+    ```
 
 ## API 로직 제거
 
@@ -222,7 +224,9 @@
 
     ```bash
     dotnet remove package Microsoft.AspNetCore.OpenApi
-    ```## MCP 서버로 변환
+    ```
+
+## MCP 서버로 변환
 
 1. MCP 서버용 NuGet 패키지를 추가합니다.
 
@@ -322,7 +326,9 @@
 
     ```bash
     dotnet build
-    ```## MCP 서버 실행
+    ```
+
+## MCP 서버 실행
 
 1. `$REPOSITORY_ROOT` 환경 변수가 설정되어 있는지 확인하세요.
 
@@ -371,7 +377,10 @@
         }
         // 👆👆👆 추가됨 👆👆👆
       }
-    }## MCP 서버 테스트
+    }
+    ```
+
+## MCP 서버 테스트
 
 1. GitHub Copilot Chat을 에이전트 모드로 엽니다.
 1. 다음 프롬프트 중 하나를 입력합니다:
