@@ -98,12 +98,16 @@ No diretório `start`, uma aplicação ASP.NET Core Minimal API já está estrut
 1. Use o prompt como abaixo para implementar a lógica de gerenciamento de lista de tarefas.
 
     ```text
-    Gostaria de desenvolver uma aplicação de lista de tarefas usando ASP.NET Core. Siga as instruções.
-
+    Gostaria de implementar uma lógica de gerenciamento de lista de tarefas na aplicação ASP.NET Core Minimal API. Siga as instruções abaixo para o desenvolvimento da aplicação.
+    
     - Use context7.
     - Identifique primeiro todos os passos que você vai fazer.
     - Seu diretório de trabalho é `workshop/src/McpTodoServer.ContainerApp`.
-    - A aplicação deve incluir modelos para gerenciamento de tarefas com as propriedades: ID, título, descrição, status completado, data de criação e data de atualização.
+    - Use SQLite como banco de dados e deve usar o recurso em memória.
+    - Use EntityFramework Core para transações de banco de dados.
+    - Inicialize o banco de dados no início da aplicação.
+    - O item de tarefa contém apenas as colunas `ID`, `Text` e `IsCompleted`.
+    - O gerenciamento de lista de tarefas tem 5 recursos - criar, listar, atualizar, completar e excluir.
     - Se necessário, adicione pacotes NuGet compatíveis com .NET 9.
     - NÃO implemente endpoints de API para gerenciamento de lista de tarefas.
     - NÃO adicione dados iniciais.
