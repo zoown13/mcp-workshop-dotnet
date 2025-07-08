@@ -26,7 +26,7 @@
 1. ログインまたはサインアップを求められた場合は、そうしてください。無料です。
 1. GitHub Copilotエージェントモードを使用していることを確認してください。
 
-   ![GitHub Copilot Agent Mode](../../../docs/images/setup-01.png)
+   ![GitHub Copilot Agent Mode](../../../docs/images/setup-02.png)
 
 1. モデルを`GPT-4.1`または`Claude Sonnet 4`に選択してください。
 1. [MCPサーバー](./00-setup.md#set-up-mcp-servers)を設定していることを確認してください。
@@ -116,22 +116,7 @@
     ```
 
 1. GitHub Copilotの![the keep button image](https://img.shields.io/badge/keep-blue)ボタンをクリックして変更を適用します。
-
-1. 以下のようなプロンプトを使用してTodoToolクラスを追加します。
-
-    ```text
-    アプリケーションに`TodoTool`クラスを追加したいと思います。指示に従ってください。
-
-    - context7を使用してください。
-    - 最初に実行する全てのステップを特定してください。
-    - 作業ディレクトリは`workshop/src/McpTodoServer.ContainerApp`です。
-    - `TodoTool`クラスには5つのメソッドが含まれている必要があります - 作成、一覧表示、更新、完了、削除。
-    - 依存関係を登録しないでください。
-    ```
-
-1. GitHub Copilotの![the keep button image](https://img.shields.io/badge/keep-blue)ボタンをクリックして変更を適用します。
-
-1. 以下のようなプロンプトを使用してアプリケーションをビルドします。
+1. 以下のようなプロンプトを使用して開発結果を確認します。
 
     ```text
     アプリケーションをビルドしたいと思います。指示に従ってください。
@@ -145,6 +130,19 @@
    >
    > - ビルドが成功するまでこのステップを繰り返してください。
    > - ビルドが失敗し続ける場合は、エラーメッセージを確認してGitHub Copilot Agentに解決を依頼してください。
+
+1. GitHub Copilotの![the keep button image](https://img.shields.io/badge/keep-blue)ボタンをクリックして変更を適用します。
+1. 以下のようなプロンプトを使用して開発結果を確認します。
+
+    ```text
+    アプリケーションに`TodoTool`クラスを追加したいと思います。指示に従ってください。
+
+    - context7を使用してください。
+    - 最初に実行する全てのステップを特定してください。
+    - 作業ディレクトリは`workshop/src/McpTodoServer.ContainerApp`です。
+    - `TodoTool`クラスには5つのメソッドが含まれている必要があります - 作成、一覧表示、更新、完了、削除。
+    - 依存関係を登録しないでください。
+    ```
 
 ## APIロジックを削除
 
@@ -226,7 +224,9 @@
 
     ```bash
     dotnet remove package Microsoft.AspNetCore.OpenApi
-    ```## MCPサーバーに変換
+    ```
+
+## MCPサーバーに変換
 
 1. MCPサーバー用のNuGetパッケージを追加します。
 
@@ -326,7 +326,9 @@
 
     ```bash
     dotnet build
-    ```## MCPサーバーを実行
+    ```
+
+## MCPサーバーを実行
 
 1. `$REPOSITORY_ROOT` 環境変数を設定していることを確認してください。
 
@@ -355,7 +357,7 @@
 1. `F1` を押すか、Windowsでは `Ctrl`+`Shift`+`P`、Mac OSでは `Cmd`+`Shift`+`P` を押してコマンドパレットを開き、`MCP: Add Server...` を検索します。
 1. `HTTP (HTTP or Server-Sent Events)` を選択します。
 1. サーバーURLとして `http://localhost:5242` を入力します。
-1. サーバーIDとして `mcp-todo-list` を入力します。
+1. サーバーIDとして `mcp-todo-local` を入力します。
 1. MCP設定を保存する場所として `Workspace settings` を選択します。
 1. `.vscode/mcp.json` を開いて、MCPサーバーが追加されたことを確認します。
 
@@ -370,12 +372,15 @@
           ]
         },
         // 👇👇👇 追加済み 👇👇👇
-        "mcp-todo-list": {
+        "mcp-todo-local": {
             "url": "http://localhost:5242/mcp"
         }
         // 👆👆👆 追加済み 👆👆👆
       }
-    }## MCPサーバーをテスト
+    }
+    ```
+
+## MCPサーバーをテスト
 
 1. GitHub Copilot Chatをエージェントモードで開きます。
 1. 以下のプロンプトのいずれかを入力します：

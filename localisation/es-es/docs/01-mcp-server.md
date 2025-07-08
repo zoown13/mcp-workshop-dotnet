@@ -26,7 +26,7 @@ Consulta el documento [README](../README.md#requisitos-previos) para la preparac
 1. Si se te pide iniciar sesión o registrarte, hazlo. Es gratuito.
 1. Asegúrate de estar usando el Modo Agente de GitHub Copilot.
 
-   ![GitHub Copilot Agent Mode](../../../docs/images/setup-01.png)
+   ![GitHub Copilot Agent Mode](../../../docs/images/setup-02.png)
 
 1. Selecciona el modelo como `GPT-4.1` o `Claude Sonnet 4`.
 1. Asegúrate de haber configurado [Servidores MCP](./00-setup.md#set-up-mcp-servers).
@@ -119,19 +119,6 @@ En el directorio `start`, ya hay una aplicación ASP.NET Core Minimal API estruc
 1. Usa el prompt como el siguiente para verificar el resultado del desarrollo.
 
     ```text
-    Me gustaría agregar la clase `TodoTool` a la aplicación. Sigue las instrucciones.
-
-    - Usa context7.
-    - Identifica todos los pasos primero, que vas a hacer.
-    - Tu directorio de trabajo es `workshop/src/McpTodoServer.ContainerApp`.
-    - La clase `TodoTool` debe contener 5 métodos - crear, listar, actualizar, completar y eliminar.
-    - NO registres dependencia.
-    ```
-
-1. Haz clic en el botón ![the keep button image](https://img.shields.io/badge/keep-blue) de GitHub Copilot para tomar los cambios.
-1. Usa el prompt como el siguiente para verificar el resultado del desarrollo.
-
-    ```text
     Me gustaría construir la aplicación. Sigue las instrucciones.
 
     - Usa context7.
@@ -143,6 +130,19 @@ En el directorio `start`, ya hay una aplicación ASP.NET Core Minimal API estruc
    >
    > - Hasta que la construcción tenga éxito, itera este paso.
    > - Si la construcción sigue fallando, revisa los mensajes de error y pregúntales a GitHub Copilot Agent para resolverlos.
+
+1. Haz clic en el botón ![the keep button image](https://img.shields.io/badge/keep-blue) de GitHub Copilot para tomar los cambios.
+1. Usa el prompt como el siguiente para verificar el resultado del desarrollo.
+
+    ```text
+    Me gustaría agregar la clase `TodoTool` a la aplicación. Sigue las instrucciones.
+
+    - Usa context7.
+    - Identifica todos los pasos primero, que vas a hacer.
+    - Tu directorio de trabajo es `workshop/src/McpTodoServer.ContainerApp`.
+    - La clase `TodoTool` debe contener 5 métodos - crear, listar, actualizar, completar y eliminar.
+    - NO registres dependencia.
+    ```
 
 ## Remover Lógica de API
 
@@ -357,7 +357,7 @@ En el directorio `start`, ya hay una aplicación ASP.NET Core Minimal API estruc
 1. Abre la Paleta de Comandos presionando `F1` o `Ctrl`+`Shift`+`P` en Windows o `Cmd`+`Shift`+`P` en Mac OS, y busca `MCP: Add Server...`.
 1. Elige `HTTP (HTTP or Server-Sent Events)`.
 1. Ingresa `http://localhost:5242` como la URL del servidor.
-1. Ingresa `mcp-todo-list` como ID del servidor.
+1. Ingresa `mcp-todo-local` como ID del servidor.
 1. Elige `Workspace settings` como la ubicación para guardar la configuración de MCP.
 1. Abre `.vscode/mcp.json` y verifica que el servidor MCP fue agregado.
 
@@ -372,12 +372,13 @@ En el directorio `start`, ya hay una aplicación ASP.NET Core Minimal API estruc
           ]
         },
         // 👇👇👇 Agregado 👇👇👇
-        "mcp-todo-list": {
+        "mcp-todo-local": {
             "url": "http://localhost:5242/mcp"
         }
         // 👆👆👆 Agregado 👆👆👆
       }
     }
+    ```
 
 ## Probar Servidor MCP
 
