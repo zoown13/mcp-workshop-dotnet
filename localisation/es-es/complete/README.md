@@ -23,6 +23,9 @@ Este es un servidor MCP, alojado en [Azure Container Apps](https://learn.microso
   - [MCP Inspector + Servidor MCP local](#mcp-inspector--servidor-mcp-local)
   - [MCP Inspector + Servidor MCP local en contenedor](#mcp-inspector--servidor-mcp-local-en-contenedor)
   - [MCP Inspector + Servidor MCP remoto](#mcp-inspector--servidor-mcp-remoto)
+  - [Aplicación Cliente MCP + Servidor MCP local](#aplicación-cliente-mcp--servidor-mcp-local)
+  - [Aplicación Cliente MCP + Servidor MCP local en contenedor](#aplicación-cliente-mcp--servidor-mcp-local-en-contenedor)
+  - [Aplicación Cliente MCP + Servidor MCP remoto](#aplicación-cliente-mcp--servidor-mcp-remoto)
 
 ### Ejecutar servidor MCP ASP.NET Core localmente
 
@@ -41,7 +44,7 @@ Este es un servidor MCP, alojado en [Azure Container Apps](https://learn.microso
 1. Ejecutar la aplicación del servidor MCP.
 
     ```bash
-    cd $REPOSITORY_ROOT/todo-list
+    cd $REPOSITORY_ROOT/complete
     dotnet run --project ./src/McpTodoServer.ContainerApp
     ```
 
@@ -89,13 +92,7 @@ Este es un servidor MCP, alojado en [Azure Container Apps](https://learn.microso
 
    Durante el aprovisionamiento y despliegue, se te pedirá que proporciones ID de suscripción, ubicación, nombre del entorno.
 
-1. Después de que se complete el despliegue, obtén la información ejecutando los siguientes comandos:
-
-   - FQDN de Azure Container Apps:
-
-     ```bash
-     azd env get-value AZURE_RESOURCE_MCP_TODO_LIST_FQDN
-     ```
+1. Después de que se complete el despliegue, obtén la información de URL del terminal.
 
 ### Conectar servidor MCP a un host/cliente MCP
 
@@ -253,6 +250,121 @@ Este es un servidor MCP, alojado en [Azure Container Apps](https://learn.microso
 
 1. Hacer clic en **List Tools**.
 1. Hacer clic en una herramienta y **Run Tool** con valores apropiados.
+
+#### Aplicación Cliente MCP + Servidor MCP local
+
+1. Obtener la raíz del repositorio.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. Navegar al directorio de la aplicación cliente MCP.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. Ejecutar la aplicación cliente MCP.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Abrir un navegador web e ingresar prompts. Estos son solo ejemplos:
+
+    ```text
+    - Muéstrame la lista de tareas
+    - Agregar "reunión a las 11am"
+    - Completar el elemento de tarea #1
+    - Eliminar el elemento de tarea #2
+    ```
+
+1. Confirmar el resultado.
+
+#### Aplicación Cliente MCP + Servidor MCP local en contenedor
+
+1. Obtener la raíz del repositorio.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. Navegar al directorio de la aplicación cliente MCP.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. Abrir `Program.cs`, reemplazar `http://localhost:5242` con `http://localhost:8080` y guardarlo.
+
+1. Ejecutar la aplicación cliente MCP.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Abrir un navegador web e ingresar prompts. Estos son solo ejemplos:
+
+    ```text
+    - Muéstrame la lista de tareas
+    - Agregar "reunión a las 11am"
+    - Completar el elemento de tarea #1
+    - Eliminar el elemento de tarea #2
+    ```
+
+1. Confirmar el resultado.
+
+#### Aplicación Cliente MCP + Servidor MCP remoto
+
+1. Obtener la raíz del repositorio.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. Navegar al directorio de la aplicación cliente MCP.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. Abrir `Program.cs`, reemplazar `http://localhost:5242` con la URL de Azure Container Apps y guardarlo.
+
+1. Ejecutar la aplicación cliente MCP.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Abrir un navegador web e ingresar prompts. Estos son solo ejemplos:
+
+    ```text
+    - Muéstrame la lista de tareas
+    - Agregar "reunión a las 11am"
+    - Completar el elemento de tarea #1
+    - Eliminar el elemento de tarea #2
+    ```
+
+1. Confirmar el resultado.
 
 ---
 

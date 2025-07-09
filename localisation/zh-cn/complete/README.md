@@ -23,6 +23,9 @@
   - [MCP Inspector + 本地 MCP 服务器](#mcp-inspector--本地-mcp-服务器)
   - [MCP Inspector + 容器中的本地 MCP 服务器](#mcp-inspector--容器中的本地-mcp-服务器)
   - [MCP Inspector + 远程 MCP 服务器](#mcp-inspector--远程-mcp-服务器)
+  - [MCP 客户端应用 + 本地 MCP 服务器](#mcp-客户端应用--本地-mcp-服务器)
+  - [MCP 客户端应用 + 容器中的本地 MCP 服务器](#mcp-客户端应用--容器中的本地-mcp-服务器)
+  - [MCP 客户端应用 + 远程 MCP 服务器](#mcp-客户端应用--远程-mcp-服务器)
 
 ### 在本地运行 ASP.NET Core MCP 服务器
 
@@ -41,7 +44,7 @@
 1. 运行 MCP 服务器应用。
 
     ```bash
-    cd $REPOSITORY_ROOT/todo-list
+    cd $REPOSITORY_ROOT/complete
     dotnet run --project ./src/McpTodoServer.ContainerApp
     ```
 
@@ -89,13 +92,7 @@
 
    在配置和部署过程中，系统会要求您提供订阅 ID、位置和环境名称。
 
-1. 部署完成后，运行以下命令获取信息：
-
-   - Azure Container Apps FQDN:
-
-     ```bash
-     azd env get-value AZURE_RESOURCE_MCP_TODO_LIST_FQDN
-     ```
+1. 部署完成后，从终端获取 URL 信息。
 
 ### 将 MCP 服务器连接到 MCP 主机/客户端
 
@@ -253,6 +250,121 @@
 
 1. 点击 **List Tools**。
 1. 点击一个工具并使用适当的值 **Run Tool**。
+
+#### MCP 客户端应用 + 本地 MCP 服务器
+
+1. 获取存储库根目录。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. 导航到 MCP 客户端应用目录。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. 运行 MCP 客户端应用。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 打开网络浏览器并输入提示。这些只是示例：
+
+    ```text
+    - 显示待办事项列表
+    - 添加"上午11点开会"
+    - 完成待办事项 #1
+    - 删除待办事项 #2
+    ```
+
+1. 确认结果。
+
+#### MCP 客户端应用 + 容器中的本地 MCP 服务器
+
+1. 获取存储库根目录。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. 导航到 MCP 客户端应用目录。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. 打开 `Program.cs`，将 `http://localhost:5242` 替换为 `http://localhost:8080` 并保存。
+
+1. 运行 MCP 客户端应用。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 打开网络浏览器并输入提示。这些只是示例：
+
+    ```text
+    - 显示待办事项列表
+    - 添加"上午11点开会"
+    - 完成待办事项 #1
+    - 删除待办事项 #2
+    ```
+
+1. 确认结果。
+
+#### MCP 客户端应用 + 远程 MCP 服务器
+
+1. 获取存储库根目录。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. 导航到 MCP 客户端应用目录。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. 打开 `Program.cs`，将 `http://localhost:5242` 替换为 Azure Container Apps 的 URL 并保存。
+
+1. 运行 MCP 客户端应用。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 打开网络浏览器并输入提示。这些只是示例：
+
+    ```text
+    - 显示待办事项列表
+    - 添加"上午11点开会"
+    - 完成待办事项 #1
+    - 删除待办事项 #2
+    ```
+
+1. 确认结果。
 
 ---
 

@@ -23,6 +23,9 @@
   - [MCP Inspector + 로컬 MCP 서버](#mcp-inspector--로컬-mcp-서버)
   - [MCP Inspector + 컨테이너의 로컬 MCP 서버](#mcp-inspector--컨테이너의-로컬-mcp-서버)
   - [MCP Inspector + 원격 MCP 서버](#mcp-inspector--원격-mcp-서버)
+  - [MCP 클라이언트 앱 + 로컬 MCP 서버](#mcp-클라이언트-앱--로컬-mcp-서버)
+  - [MCP 클라이언트 앱 + 컨테이너의 로컬 MCP 서버](#mcp-클라이언트-앱--컨테이너의-로컬-mcp-서버)
+  - [MCP 클라이언트 앱 + 원격 MCP 서버](#mcp-클라이언트-앱--원격-mcp-서버)
 
 ### ASP.NET Core MCP 서버를 로컬에서 실행
 
@@ -41,7 +44,7 @@
 1. MCP 서버 앱을 실행합니다.
 
     ```bash
-    cd $REPOSITORY_ROOT/todo-list
+    cd $REPOSITORY_ROOT/complete
     dotnet run --project ./src/McpTodoServer.ContainerApp
     ```
 
@@ -89,13 +92,7 @@
 
    프로비저닝 및 배포 중에 구독 ID, 위치, 환경 이름을 제공하라는 메시지가 표시됩니다.
 
-1. 배포가 완료된 후 다음 명령을 실행하여 정보를 가져옵니다:
-
-   - Azure Container Apps FQDN:
-
-     ```bash
-     azd env get-value AZURE_RESOURCE_MCP_TODO_LIST_FQDN
-     ```
+1. 배포가 완료된 후 터미널에서 URL 정보를 가져옵니다.
 
 ### MCP 서버를 MCP 호스트/클라이언트에 연결
 
@@ -253,6 +250,121 @@
 
 1. **List Tools**를 클릭합니다.
 1. 도구를 클릭하고 적절한 값으로 **Run Tool**합니다.
+
+#### MCP 클라이언트 앱 + 로컬 MCP 서버
+
+1. 저장소 루트를 가져옵니다.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCP 클라이언트 앱 디렉토리로 이동합니다.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. MCP 클라이언트 앱을 실행합니다.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 웹 브라우저를 열고 프롬프트를 입력합니다. 다음은 예시입니다:
+
+    ```text
+    - 할 일 목록을 보여주세요
+    - "오전 11시 회의" 추가
+    - 할 일 항목 #1 완료
+    - 할 일 항목 #2 삭제
+    ```
+
+1. 결과를 확인합니다.
+
+#### MCP 클라이언트 앱 + 컨테이너의 로컬 MCP 서버
+
+1. 저장소 루트를 가져옵니다.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCP 클라이언트 앱 디렉토리로 이동합니다.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. `Program.cs`를 열고 `http://localhost:5242`를 `http://localhost:8080`으로 바꾸고 저장합니다.
+
+1. MCP 클라이언트 앱을 실행합니다.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 웹 브라우저를 열고 프롬프트를 입력합니다. 다음은 예시입니다:
+
+    ```text
+    - 할 일 목록을 보여주세요
+    - "오전 11시 회의" 추가
+    - 할 일 항목 #1 완료
+    - 할 일 항목 #2 삭제
+    ```
+
+1. 결과를 확인합니다.
+
+#### MCP 클라이언트 앱 + 원격 MCP 서버
+
+1. 저장소 루트를 가져옵니다.
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCP 클라이언트 앱 디렉토리로 이동합니다.
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. `Program.cs`를 열고 `http://localhost:5242`를 Azure Container Apps URL로 바꾸고 저장합니다.
+
+1. MCP 클라이언트 앱을 실행합니다.
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. 웹 브라우저를 열고 프롬프트를 입력합니다. 다음은 예시입니다:
+
+    ```text
+    - 할 일 목록을 보여주세요
+    - "오전 11시 회의" 추가
+    - 할 일 항목 #1 완료
+    - 할 일 항목 #2 삭제
+    ```
+
+1. 결과를 확인합니다.
 
 ---
 

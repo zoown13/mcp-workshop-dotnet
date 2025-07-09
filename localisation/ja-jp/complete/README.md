@@ -23,6 +23,9 @@
   - [MCP Inspector + ローカルMCPサーバー](#mcp-inspector--ローカルmcpサーバー)
   - [MCP Inspector + コンテナ内ローカルMCPサーバー](#mcp-inspector--コンテナ内ローカルmcpサーバー)
   - [MCP Inspector + リモートMCPサーバー](#mcp-inspector--リモートmcpサーバー)
+  - [MCPクライアントアプリ + ローカルMCPサーバー](#mcpクライアントアプリ--ローカルmcpサーバー)
+  - [MCPクライアントアプリ + コンテナ内ローカルMCPサーバー](#mcpクライアントアプリ--コンテナ内ローカルmcpサーバー)
+  - [MCPクライアントアプリ + リモートMCPサーバー](#mcpクライアントアプリ--リモートmcpサーバー)
 
 ### ASP.NET Core MCPサーバーをローカルで実行
 
@@ -41,7 +44,7 @@
 1. MCPサーバーアプリを実行する。
 
     ```bash
-    cd $REPOSITORY_ROOT/todo-list
+    cd $REPOSITORY_ROOT/complete
     dotnet run --project ./src/McpTodoServer.ContainerApp
     ```
 
@@ -89,13 +92,7 @@
 
    プロビジョニングとデプロイ中に、サブスクリプションID、場所、環境名の提供を求められます。
 
-1. デプロイが完了した後、以下のコマンドを実行して情報を取得する：
-
-   - Azure Container Apps FQDN:
-
-     ```bash
-     azd env get-value AZURE_RESOURCE_MCP_TODO_LIST_FQDN
-     ```
+1. デプロイが完了した後、ターミナルからURL情報を取得する。
 
 ### MCPサーバーをMCPホスト/クライアントに接続
 
@@ -253,6 +250,121 @@
 
 1. **List Tools**をクリックする。
 1. ツールをクリックし、適切な値で**Run Tool**する。
+
+#### MCPクライアントアプリ + ローカルMCPサーバー
+
+1. リポジトリルートを取得する。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCPクライアントアプリディレクトリに移動する。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. MCPクライアントアプリを実行する。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Webブラウザを開いてプロンプトを入力する。これらは例です：
+
+    ```text
+    - To-Doリストを表示して
+    - "午前11時に会議"を追加
+    - To-Do項目#1を完了
+    - To-Do項目#2を削除
+    ```
+
+1. 結果を確認する。
+
+#### MCPクライアントアプリ + コンテナ内ローカルMCPサーバー
+
+1. リポジトリルートを取得する。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCPクライアントアプリディレクトリに移動する。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. `Program.cs`を開き、`http://localhost:5242`を`http://localhost:8080`に置き換えて保存する。
+
+1. MCPクライアントアプリを実行する。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Webブラウザを開いてプロンプトを入力する。これらは例です：
+
+    ```text
+    - To-Doリストを表示して
+    - "午前11時に会議"を追加
+    - To-Do項目#1を完了
+    - To-Do項目#2を削除
+    ```
+
+1. 結果を確認する。
+
+#### MCPクライアントアプリ + リモートMCPサーバー
+
+1. リポジトリルートを取得する。
+
+    ```bash
+    # bash/zsh
+    REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+    ```
+
+    ```powershell
+    # PowerShell
+    $REPOSITORY_ROOT = git rev-parse --show-toplevel
+    ```
+
+1. MCPクライアントアプリディレクトリに移動する。
+
+    ```bash
+    cd $REPOSITORY_ROOT/complete/src/McpTodoClient.BlazorApp
+    ```
+
+1. `Program.cs`を開き、`http://localhost:5242`をAzure Container AppsのURLに置き換えて保存する。
+
+1. MCPクライアントアプリを実行する。
+
+    ```bash
+    dotnet watch run
+    ```
+
+1. Webブラウザを開いてプロンプトを入力する。これらは例です：
+
+    ```text
+    - To-Doリストを表示して
+    - "午前11時に会議"を追加
+    - To-Do項目#1を完了
+    - To-Do項目#2を削除
+    ```
+
+1. 結果を確認する。
 
 ---
 
