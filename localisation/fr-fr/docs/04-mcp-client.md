@@ -1,4 +1,4 @@
-# 03 : Client MCP
+# 04 : Client MCP
 
 Dans cette étape, vous construisez un client MCP pour la gestion de liste de tâches.
 

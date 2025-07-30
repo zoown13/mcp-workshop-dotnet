@@ -1,4 +1,4 @@
-# 01: Servidor MCP
+# 02: Servidor MCP
 
 En este paso, estás construyendo un servidor MCP para la gestión de lista de tareas.
 

@@ -1,4 +1,4 @@
-# 01 : Serveur MCP
+# 02 : Serveur MCP
 
 Dans cette étape, vous construisez un serveur MCP pour la gestion de liste de tâches.
 

@@ -1,4 +1,4 @@
-# 02: Servidor MCP Remoto
+# 03: Servidor MCP Remoto
 
 En este paso, estás desplegando el servidor MCP a Azure.
 

@@ -1,4 +1,4 @@
-# 02 : Serveur MCP Distant
+# 03 : Serveur MCP Distant
 
 Dans cette étape, vous déployez le serveur MCP sur Azure.
 
