@@ -86,6 +86,30 @@ Référez-vous au document [README](../README.md#prérequis) pour la préparatio
 
    La version `7.5.0` ou supérieure est recommandée. Si votre version est inférieure, visitez la [page d'installation de PowerShell](https://learn.microsoft.com/powershell/scripting/install/installing-powershell) et suivez les instructions.
 
+### Installer node.js
+
+1. Vérifiez si vous avez déjà installé node.js.
+
+    ```bash
+    # Bash/Zsh
+    which node
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command node
+    ```
+
+   Si vous ne voyez pas le chemin de commande de `node`, cela signifie que vous n'avez pas encore installé node.js. Visitez la [page de téléchargement de node.js](https://nodejs.org/en/download) et suivez les instructions.
+
+1. Vérifiez la version de votre node.js.
+
+    ```bash
+    node --version
+    ```
+
+   La version `22.17.x` (LTS la plus récente) est recommandée. Si votre version est inférieure, visitez la [page de téléchargement de node.js](https://nodejs.org/en/download) et suivez les instructions.
+
 ### Installer git CLI
 
 1. Vérifiez si vous avez déjà installé git CLI.
@@ -273,9 +297,6 @@ Référez-vous au document [README](../README.md#prérequis) pour la préparatio
     Copy-Item -Path $REPOSITORY_ROOT/docs/.vscode/* `
               -Destination $REPOSITORY_ROOT/.vscode/ -Recurse -Force
     ```
-
-1. Ouvrez la palette de commandes en tapant `F1` ou `Ctrl`+`Shift`+`P` sur Windows ou `Cmd`+`Shift`+`P` sur Mac OS, et recherchez `MCP: List Servers`.
-1. Choisissez `context7` puis cliquez sur `Start Server`.
 
 ## Vérifier le Mode Agent GitHub Copilot
 

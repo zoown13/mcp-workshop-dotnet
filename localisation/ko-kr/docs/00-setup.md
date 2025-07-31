@@ -86,6 +86,30 @@
 
    버전 `7.5.0` 이상이 권장됩니다. 버전이 그보다 낮다면 [PowerShell 설치 페이지](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)를 방문하여 지침을 따르세요.
 
+### node.js 설치
+
+1. node.js가 이미 설치되어 있는지 확인하세요.
+
+    ```bash
+    # Bash/Zsh
+    which node
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command node
+    ```
+
+   `node`의 명령 경로가 보이지 않는다면 아직 node.js를 설치하지 않았다는 의미입니다. [node.js 다운로드 페이지](https://nodejs.org/en/download)를 방문하여 지침을 따르세요.
+
+1. node.js 버전을 확인하세요.
+
+    ```bash
+    node --version
+    ```
+
+   버전 `22.17.x` (최신 LTS)가 권장됩니다. 버전이 그보다 낮다면 [node.js 다운로드 페이지](https://nodejs.org/en/download)를 방문하여 지침을 따르세요.
+
 ### git CLI 설치
 
 1. git CLI가 이미 설치되어 있는지 확인하세요.
@@ -273,9 +297,6 @@
     Copy-Item -Path $REPOSITORY_ROOT/docs/.vscode/* `
               -Destination $REPOSITORY_ROOT/.vscode/ -Recurse -Force
     ```
-
-1. `F1`을 누르거나 Windows에서 `Ctrl`+`Shift`+`P`, Mac OS에서 `Cmd`+`Shift`+`P`를 눌러 명령 팔레트를 열고 `MCP: List Servers`를 검색합니다.
-1. `context7`을 선택한 다음 `Start Server`를 클릭합니다.
 
 ## GitHub Copilot 에이전트 모드 확인
 
