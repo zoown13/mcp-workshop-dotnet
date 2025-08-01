@@ -13,7 +13,7 @@ Refer to the [README](../README.md#prerequisites) doc for preparation.
 
 ## Containerize MCP Server with `Dockerfile`
 
-In the [previous session](./01-mcp-server.md), you've already created an MCP server app. Let's keep using it.
+In the [previous session](./02-mcp-server.md), you've already created an MCP server app. Let's keep using it.
 
 1. Make sure Docker Desktop is up and running.
 1. Make sure you've got the environment variable of `$REPOSITORY_ROOT`.
@@ -105,7 +105,7 @@ In the [previous session](./01-mcp-server.md), you've already created an MCP ser
     }
     ```
 
-1. Start the MCP server, `mcp-todo`, and test it by following [this document](./01-mcp-server.md#test-mcp-server).
+1. Start the MCP server, `mcp-todo`, and test it by following [this document](./02-mcp-server.md#test-mcp-server).
 1. Once the test is over, stop the container and remove it.
 
     ```bash
@@ -217,7 +217,7 @@ In the [previous session](./01-mcp-server.md), you've already created an MCP ser
     }
     ```
 
-1. Start the MCP server, `mcp-todo`, and test it by following [this document](./01-mcp-server.md#test-mcp-server).
+1. Start the MCP server, `mcp-todo`, and test it by following [this document](./02-mcp-server.md#test-mcp-server).
 
 ---
 

@@ -25,7 +25,7 @@ To get the PAT, go to [GitHub Settings](https://github.com/settings/personal-acc
 
 ## Prepare MCP Client Development
 
-In the [previous session](./01-mcp-server.md), you've already copied both MCP server and client app. Let's keep using it.
+In the [previous session](./02-mcp-server.md), you've already copied both MCP server and client app. Let's keep using it.
 
 1. Make sure you've got the environment variable of `$REPOSITORY_ROOT`.
 
@@ -226,7 +226,7 @@ In the [previous session](./01-mcp-server.md), you've already copied both MCP se
     Cancel the meeting at 1pm.
     ```
 
-👉 **CHALLENGE**: Replace THE MCP Server with a container or remote server created in the [previous session](./02-mcp-remote-server.md).
+👉 **CHALLENGE**: Replace THE MCP Server with a container or remote server created in the [previous session](./03-mcp-remote-server.md).
 
 ## Clean Up Resources
 
