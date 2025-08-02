@@ -153,6 +153,7 @@ Refer to the [README](../README.md#prerequisites) doc for preparation.
 
     ```text
     Push the current changes to the `mymonkeyapp` branch of the repository.
+    Before pushing the changes, make sure the `workshop` directory should be included in the push.
     With this branch, create a PR against the `main` branch of your repository, not the upstream one.
     Connect this PR to the issue created before.
     Then, merge this PR and close the issue.
